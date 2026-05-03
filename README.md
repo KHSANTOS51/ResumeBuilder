@@ -2,6 +2,8 @@
 
 Republic Resumes is a local single-page resume builder for CSC3100. It uses a plain HTML/CSS/JavaScript frontend, an Express REST API, and SQLite storage through Node's built-in SQLite module.
 
+https://github.com/KHSANTOS51/ResumeBuilder
+
 ## Run
 
 1. Install dependencies:
@@ -45,9 +47,7 @@ In browser mode, `Print or Save PDF` opens the browser print preview. In Electro
 - Save and reload AI resume drafts from SQLite.
 - Uses local Bootstrap, the Bootswatch Vapor theme, and SweetAlert2 files; no CDN is required.
 
-## Submission Notes
+## Known Issues 
 
-- GitHub repository link: add your public repository URL here before submission.
-- Lighthouse accessibility score: run Lighthouse and document the score here before submission.
-- Sharing permission statement: add whether the instructor may share this project with other students.
-- Example resume PDF: generate one from the Resume screen with the browser print dialog.
+- The web browser version of the application has timestamp and naming at the top of the header for the print resume function, issue does not occur with the electron js app. 
+- The AI build of the resume needs more tokens to pass all the traffic through to build out the resume, but all AI revisions work at this time. 
