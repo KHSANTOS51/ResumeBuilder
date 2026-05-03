@@ -1,0 +1,24 @@
+{
+  "name": "resumebuilder",
+  "version": "1.0.0",
+  "description": "ResumeForge local resume builder for CSC3100.",
+  "main": "electron-main.js",
+  "scripts": {
+    "start": "node server.js",
+    "desktop": "electron .",
+    "test": "node tests/apiSmokeTest.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "sweetalert2": "^11.26.24"
+  },
+  "devDependencies": {
+    "electron": "^41.5.0"
+  }
+}

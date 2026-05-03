@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ResumeForge local resume builder">
+    <title>ResumeForge</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/sweetalert2.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+  <body class="bg-body-tertiary">
+    <a class="visually-hidden-focusable position-absolute top-0 start-0 m-2 btn btn-primary" href="#mainContent">Skip to content</a>
+
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top shadow-sm">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-semibold d-flex align-items-center gap-2" href="#">
+          <img src="/favicon.svg" alt="ResumeForge anvil icon" width="32" height="32">
+          ResumeForge
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation" aria-controls="mainNavigation" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavigation">
+          <div class="navbar-nav ms-auto" role="tablist" aria-label="ResumeForge sections">
+            <button class="nav-link active" type="button" data-view="profileView">Profile</button>
+            <button class="nav-link" type="button" data-view="jobsView">Jobs</button>
+            <button class="nav-link" type="button" data-view="skillsView">Skills</button>
+            <button class="nav-link" type="button" data-view="certificationsView">Certifications</button>
+            <button class="nav-link" type="button" data-view="awardsView">Awards</button>
+            <button class="nav-link" type="button" data-view="resumeView">Resume</button>
+            <button class="nav-link" type="button" data-view="settingsView">Settings</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main id="mainContent" class="container-fluid py-4">
+      <section id="profileView" class="app-view">
+        <div class="row g-4">
+          <div class="col-12 col-xl-5">
+            <div class="card shadow-sm">
+              <div class="card-header bg-white">
+                <h1 class="h3 mb-0">Profile</h1>
+              </div>
+              <div class="card-body">
+                <form id="profileForm" class="row g-3" novalidate>
+                  <div class="col-12">
+                    <label for="fullName" class="form-label">Full name</label>
+                    <input id="fullName" name="fullName" class="form-control" type="text" aria-label="Full name" maxlength="160">
+                  </div>
+                  <div class="col-12">
+                    <label for="headline" class="form-label">Headline</label>
+                    <input id="headline" name="headline" class="form-control" type="text" aria-label="Resume headline" maxlength="160">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="email" class="form-label">Email</label>
+                    <input id="email" name="email" class="form-control" type="email" aria-label="Email address" maxlength="160">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input id="phone" name="phone" class="form-control" type="tel" aria-label="Phone number" maxlength="80">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="location" class="form-label">Location</label>
+                    <input id="location" name="location" class="form-control" type="text" aria-label="Location" maxlength="160">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="website" class="form-label">Website</label>
+                    <input id="website" name="website" class="form-control" type="url" aria-label="Website or portfolio URL" maxlength="240">
+                  </div>
+                  <div class="col-12">
+                    <div class="d-flex justify-content-between align-items-center gap-2">
+                      <label for="summary" class="form-label">Professional summary</label>
+                      <button class="btn btn-outline-secondary btn-sm" type="button" data-ai-target="summary" data-ai-section="professional summary" data-ai-result="profileAiResult">AI Review</button>
+                    </div>
+                    <textarea id="summary" name="summary" class="form-control" rows="6" aria-label="Professional summary" maxlength="1200"></textarea>
+                  </div>
+                  <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Save Profile</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div id="profileAiResultCard" class="card shadow-sm mt-3 d-none" aria-live="polite">
+              <div class="card-header bg-white">
+                <h2 class="h4 mb-0">AI Revisions</h2>
+              </div>
+              <div class="card-body">
+                <div id="profileAiResult" class="ai-result-text"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xl-7">
+            <div class="card shadow-sm">
+              <div class="card-header bg-white">
+                <h2 class="h4 mb-0">Live Preview</h2>
+              </div>
+              <div class="card-body bg-body-tertiary">
+                <div id="profilePreview" class="resume-paper shadow-sm"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="jobsView" class="app-view d-none">
+        <div class="row g-4">
+          <div class="col-12 col-xl-4">
+            <div class="card shadow-sm">
+              <div class="card-header bg-white">
+                <h1 class="h3 mb-0">Jobs</h1>
+              </div>
+              <div class="card-body">
+                <form id="jobForm" class="row g-3" novalidate>
+                  <input type="hidden" name="id" aria-label="Job id">
+                  <div class="col-12">
+                    <label for="jobCompany" class="form-label">Company</label>
+                    <input id="jobCompany" name="company" class="form-control" type="text" aria-label="Company" maxlength="160" required>
+                  </div>
+                  <div class="col-12">
+                    <label for="jobTitle" class="form-label">Title</label>
+                    <input id="jobTitle" name="title" class="form-control" type="text" aria-label="Job title" maxlength="160" required>
+                  </div>
+                  <div class="col-12">
+                    <label for="jobLocation" class="form-label">Location</label>
+                    <input id="jobLocation" name="location" class="form-control" type="text" aria-label="Job location" maxlength="160">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="jobStartDate" class="form-label">Start</label>
+                    <input id="jobStartDate" name="startDate" class="form-control" type="text" aria-label="Job start date" placeholder="Aug 2024" maxlength="80">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="jobEndDate" class="form-label">End</label>
+                    <input id="jobEndDate" name="endDate" class="form-control" type="text" aria-label="Job end date" placeholder="Present" maxlength="80">
+                  </div>
+                  <div class="col-12">
+                    <div class="d-flex justify-content-between align-items-center gap-2">
+                      <label for="jobResponsibilities" class="form-label">Responsibilities</label>
+                      <button class="btn btn-outline-secondary btn-sm" type="button" data-ai-target="jobResponsibilities" data-ai-section="job responsibility" data-ai-result="jobsAiResult">AI Review</button>
+                    </div>
+                    <textarea id="jobResponsibilities" name="responsibilities" class="form-control" rows="7" aria-label="Job responsibilities, one per line" maxlength="1200"></textarea>
+                    <div class="form-text">Enter one responsibility per line.</div>
+                  </div>
+                  <div class="col-12 d-flex gap-2">
+                    <button class="btn btn-primary" type="submit">Save Job</button>
+                    <button class="btn btn-outline-secondary" type="button" data-reset-form="jobForm">New</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div id="jobsAiResultCard" class="card shadow-sm mt-3 d-none" aria-live="polite">
+              <div class="card-header bg-white">
+                <h2 class="h4 mb-0">AI Revisions</h2>
+              </div>
+              <div class="card-body">
+                <div id="jobsAiResult" class="ai-result-text"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xl-8">
+            <div class="card shadow-sm">
+              <div class="card-header bg-white">
+                <h2 class="h4 mb-0">Saved Jobs</h2>
+              </div>
+              <div class="card-body">
+                <div id="jobsList" class="row g-3" aria-live="polite"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skillsView" class="app-view d-none">
+        <div class="row g-4">
+          <div class="col-12 col-xl-4">
+            <div class="card shadow-sm">
+              <div class="card-header bg-white">
+                <h1 class="h3 mb-0">Skills</h1>
+              </div>
+              <div class="card-body">
+                <form id="skillForm" class="row g-3" novalidate>
+                  <input type="hidden" name="id" aria-label="Skill id">
+                  <div class="col-12">
+                    <label for="skillCategory" class="form-label">Category</label>
+                    <input id="skillCategory" name="category" class="form-control" type="text" aria-label="Skill category" maxlength="160" required>
+                  </div>
+                  <div class="col-12">
+                    <label for="skillName" class="form-label">Skill</label>
+                    <input id="skillName" name="name" class="form-control" type="text" aria-label="Skill name" maxlength="160" required>
+                  </div>
+                  <div class="col-12">
+                    <div class="d-flex justify-content-between align-items-center gap-2">
+                      <label for="skillDetail" class="form-label">Detail</label>
+                      <button class="btn btn-outline-secondary btn-sm" type="button" data-ai-target="skillDetail" data-ai-section="skill detail" data-ai-result="skillsAiResult">AI Review</button>
+                    </div>
+                    <textarea id="skillDetail" name="detail" class="form-control" rows="4" aria-label="Skill detail" maxlength="1200"></textarea>
+                  </div>
+                  <div class="col-12 d-flex gap-2">
+                    <button class="btn btn-primary" type="submit">Save Skill</button>
+                    <button class="btn btn-outline-secondary" type="button" data-reset-form="skillForm">New</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div id="skillsAiResultCard" class="card shadow-sm mt-3 d-none" aria-live="polite">
+              <div class="card-header bg-white">
+                <h2 class="h4 mb-0">AI Revisions</h2>
+              </div>
+              <div class="card-body">
+                <div id="skillsAiResult" class="ai-result-text"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xl-8">
+            <div class="card shadow-sm">
+              <div class="card-header bg-white">
+                <h2 class="h4 mb-0">Saved Skills</h2>
+              </div>
+              <div class="card-body">
+                <div id="skillsList" class="row g-3" aria-live="polite"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="certificationsView" class="app-view d-none">
+        <div class="row g-4">
+          <div class="col-12 col-xl-4">
+            <div class="card shadow-sm">
+              <div class="card-header bg-white">
+                <h1 class="h3 mb-0">Certifications</h1>
+              </div>
+              <div class="card-body">
+                <form id="certificationForm" class="row g-3" novalidate>
+                  <input type="hidden" name="id" aria-label="Certification id">
+                  <div class="col-12">
+                    <label for="certificationName" class="form-label">Certification</label>
+                    <input id="certificationName" name="name" class="form-control" type="text" aria-label="Certification name" maxlength="160" required>
+                  </div>
+                  <div class="col-12">
+                    <label for="certificationIssuer" class="form-label">Issuer</label>
+                    <input id="certificationIssuer" name="issuer" class="form-control" type="text" aria-label="Certification issuer" maxlength="160" required>
+                  </div>
+                  <div class="col-12">
+                    <label for="certificationDate" class="form-label">Date earned</label>
+                    <input id="certificationDate" name="dateEarned" class="form-control" type="text" aria-label="Certification date earned" maxlength="80">
+                  </div>
+                  <div class="col-12">
+                    <label for="certificationDetail" class="form-label">Detail</label>
+                    <textarea id="certificationDetail" name="detail" class="form-control" rows="4" aria-label="Certification detail" maxlength="1200"></textarea>
+                  </div>
+                  <div class="col-12 d-flex gap-2">
+                    <button class="btn btn-primary" type="submit">Save Certification</button>
+                    <button class="btn btn-outline-secondary" type="button" data-reset-form="certificationForm">New</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xl-8">
+            <div class="card shadow-sm">
+              <div class="card-header bg-white">
+                <h2 class="h4 mb-0">Saved Certifications</h2>
+              </div>
+              <div class="card-body">
+                <div id="certificationsList" class="row g-3" aria-live="polite"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="awardsView" class="app-view d-none">
+        <div class="row g-4">
+          <div class="col-12 col-xl-4">
+            <div class="card shadow-sm">
+              <div class="card-header bg-white">
+                <h1 class="h3 mb-0">Awards</h1>
+              </div>
+              <div class="card-body">
+                <form id="awardForm" class="row g-3" novalidate>
+                  <input type="hidden" name="id" aria-label="Award id">
+                  <div class="col-12">
+                    <label for="awardName" class="form-label">Award</label>
+                    <input id="awardName" name="name" class="form-control" type="text" aria-label="Award name" maxlength="160" required>
+                  </div>
+                  <div class="col-12">
+                    <label for="awardIssuer" class="form-label">Issuer</label>
+                    <input id="awardIssuer" name="issuer" class="form-control" type="text" aria-label="Award issuer" maxlength="160">
+                  </div>
+                  <div class="col-12">
+                    <label for="awardDate" class="form-label">Date received</label>
+                    <input id="awardDate" name="dateReceived" class="form-control" type="text" aria-label="Award date received" maxlength="80">
+                  </div>
+                  <div class="col-12">
+                    <label for="awardDetail" class="form-label">Detail</label>
+                    <textarea id="awardDetail" name="detail" class="form-control" rows="4" aria-label="Award detail" maxlength="1200"></textarea>
+                  </div>
+                  <div class="col-12 d-flex gap-2">
+                    <button class="btn btn-primary" type="submit">Save Award</button>
+                    <button class="btn btn-outline-secondary" type="button" data-reset-form="awardForm">New</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xl-8">
+            <div class="card shadow-sm">
+              <div class="card-header bg-white">
+                <h2 class="h4 mb-0">Saved Awards</h2>
+              </div>
+              <div class="card-body">
+                <div id="awardsList" class="row g-3" aria-live="polite"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="resumeView" class="app-view d-none">
+        <div class="row g-4">
+          <div class="col-12 col-xl-4">
+            <div class="card shadow-sm">
+              <div class="card-header bg-white d-flex flex-wrap justify-content-between align-items-center gap-2">
+                <h1 class="h3 mb-0">Resume</h1>
+                <button id="printResumeButton" class="btn btn-success" type="button">Print or Save PDF</button>
+              </div>
+              <div class="card-body">
+                <div class="row g-3 mb-4">
+                  <div class="col-12">
+                    <label for="resumeStyle" class="form-label">Resume style</label>
+                    <select id="resumeStyle" class="form-select" aria-label="Resume style">
+                      <option value="classic">Classic</option>
+                      <option value="modern">Modern</option>
+                      <option value="compact">Compact</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <button id="buildResumeWithAiButton" class="btn btn-outline-primary w-100" type="button">Build With AI</button>
+                  </div>
+                  <div class="col-12">
+                    <button id="saveAiResumeButton" class="btn btn-outline-success w-100" type="button">Save AI Draft</button>
+                  </div>
+                </div>
+                <h2 class="h4">Include</h2>
+                <div id="selectionPanel" class="vstack gap-3"></div>
+              </div>
+            </div>
+            <div id="resumeAiResultCard" class="card shadow-sm mt-3 d-none" aria-live="polite">
+              <div class="card-header bg-white">
+                <h2 class="h4 mb-0">AI Resume Draft</h2>
+              </div>
+              <div class="card-body">
+                <div id="resumeAiResult" class="ai-result-text"></div>
+              </div>
+            </div>
+            <div class="card shadow-sm mt-3">
+              <div class="card-header bg-white">
+                <h2 class="h4 mb-0">Saved AI Drafts</h2>
+              </div>
+              <div class="card-body">
+                <div id="savedResumesList" class="vstack gap-2" aria-live="polite"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-xl-8">
+            <div class="card shadow-sm">
+              <div class="card-header bg-white">
+                <h2 class="h4 mb-0">Preview</h2>
+              </div>
+              <div class="card-body bg-body-tertiary">
+                <div id="resumePreview" class="resume-paper shadow-sm"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="settingsView" class="app-view d-none">
+        <div class="row g-4">
+          <div class="col-12 col-lg-6">
+            <div class="card shadow-sm">
+              <div class="card-header bg-white">
+                <h1 class="h3 mb-0">Settings</h1>
+              </div>
+              <div class="card-body">
+                <form id="settingsForm" class="row g-3" novalidate>
+                  <div class="col-12">
+                    <label for="geminiApiKey" class="form-label">Gemini API key</label>
+                    <input id="geminiApiKey" name="geminiApiKey" class="form-control" type="password" aria-label="Gemini API key" autocomplete="off">
+                    <div id="geminiKeyStatus" class="form-text">No key saved yet.</div>
+                  </div>
+                  <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Save Settings</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-6">
+            <div class="card shadow-sm">
+              <div class="card-header bg-white">
+                <h2 class="h4 mb-0">Libraries</h2>
+              </div>
+              <div class="card-body">
+                <button id="librariesButton" class="btn btn-outline-secondary" type="button">View Attributions</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/vendor/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/sweetalert2.all.min.js"></script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>
