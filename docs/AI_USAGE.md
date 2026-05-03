@@ -15,9 +15,6 @@ Generative AI was used to help scaffold and implement this project from the prov
 
 The coding rules came from `AGENTS.md` in the project root. The implementation follows the major constraints: `server.js` entry point, RESTful APIs under `/api/routing`, PUT for updates, URL parameters for deletes, query strings for GET filtering, JSON bodies for creates, prepared statements, input validation, local frontend libraries, Bootstrap utility usage, and SweetAlert2 user-facing errors.
 
-## MCP Server Details
-
-No MCP servers were used for this implementation.
 
 ## API Key Handling
 
@@ -38,4 +35,4 @@ The Resume screen can load three styles: Classic, Modern, and Compact. The selec
 
 ## AI Comments In Code
 
-The code does not mark individual AI-generated lines because the implementation was generated as a cohesive scaffold. Be prepared to explain the route modules, SQLite prepared statements, frontend fetch calls, and print CSS during review.
+The code does not mark individual AI-generated lines because the implementation was generated as a cohesive scaffold.

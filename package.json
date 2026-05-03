@@ -14,6 +14,7 @@
   "type": "commonjs",
   "dependencies": {
     "bootstrap": "^5.3.8",
+    "bootswatch": "^5.3.8",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "sweetalert2": "^11.26.24"

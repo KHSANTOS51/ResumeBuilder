@@ -50,6 +50,42 @@ const showSuccess = (strMessage) => {
   });
 };
 
+const prepareResumePrint = () => {
+  document.body.classList.add('printing-resume');
+  showView('resumeView');
+  renderResumePreview();
+};
+
+const finishResumePrint = () => {
+  document.body.classList.remove('printing-resume');
+};
+
+const saveOrPrintResume = async () => {
+  prepareResumePrint();
+
+  if (window.resumeForgeElectron?.saveResumePdf) {
+    try {
+      const objResult = await window.resumeForgeElectron.saveResumePdf();
+
+      if (!objResult.canceled) {
+        showSuccess('Resume PDF saved.');
+      }
+    } finally {
+      finishResumePrint();
+    }
+
+    return;
+  }
+
+  const finishAfterPrint = () => {
+    finishResumePrint();
+    window.removeEventListener('afterprint', finishAfterPrint);
+  };
+
+  window.addEventListener('afterprint', finishAfterPrint);
+  window.print();
+};
+
 const apiRequest = async (strUrl, objOptions = {}) => {
   const objResponse = await fetch(strUrl, {
     headers: {
@@ -105,7 +141,16 @@ const resetForm = (strFormId) => {
 
 const showView = (strViewId) => {
   document.querySelectorAll('.app-view').forEach((objView) => objView.classList.toggle('d-none', objView.id !== strViewId));
-  document.querySelectorAll('[data-view]').forEach((objButton) => objButton.classList.toggle('active', objButton.dataset.view === strViewId));
+  document.querySelectorAll('[data-view]').forEach((objButton) => {
+    const blnIsActive = objButton.dataset.view === strViewId;
+    objButton.classList.toggle('active', blnIsActive);
+
+    if (blnIsActive) {
+      objButton.setAttribute('aria-current', 'page');
+    } else {
+      objButton.removeAttribute('aria-current');
+    }
+  });
 
   if (strViewId === 'resumeView') {
     renderSelections();
@@ -308,7 +353,7 @@ const renderJobsList = () => {
   document.getElementById('jobsList').innerHTML = objState.jobs.map((objJob) => `
     <article class="col-12 col-lg-6">
       <div class="card h-100">
-        <div class="card-header bg-white">
+        <div class="card-header">
           <h3 class="h5 mb-0">${escapeHtml(objJob.title)}</h3>
         </div>
         <div class="card-body">
@@ -329,7 +374,7 @@ const renderSimpleList = (strType, strListId, strFormId, arrFields) => {
   document.getElementById(strListId).innerHTML = objState[strType].map((objItem) => `
     <article class="col-12 col-lg-6">
       <div class="card h-100">
-        <div class="card-header bg-white">
+        <div class="card-header">
           <h3 class="h5 mb-0">${escapeHtml(objItem.name)}</h3>
         </div>
         <div class="card-body">
@@ -606,9 +651,9 @@ document.addEventListener('click', async (event) => {
     } else if (objTarget.matches('[data-delete-type]')) {
       await deleteItem(objTarget.dataset.deleteType, Number(objTarget.dataset.id));
     } else if (objTarget.id === 'printResumeButton') {
-      window.print();
+      await saveOrPrintResume();
     } else if (objTarget.id === 'librariesButton') {
-      Swal.fire('Attributions', 'ResumeForge uses Bootstrap, SweetAlert2, Express, dotenv, and the experimental Node SQLite module. All browser libraries are stored locally in this project.', 'info');
+      Swal.fire('Attributions', 'ResumeForge uses Bootstrap, the Bootswatch Vapor theme, SweetAlert2, Express, dotenv, and the experimental Node SQLite module. All browser libraries are stored locally in this project.', 'info');
     }
   } catch (error) {
     showError(error.message);

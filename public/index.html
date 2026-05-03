@@ -6,14 +6,14 @@
     <meta name="description" content="ResumeForge local resume builder">
     <title>ResumeForge</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/bootswatch-vapor.min.css">
     <link rel="stylesheet" href="/vendor/sweetalert2.min.css">
     <link rel="stylesheet" href="/css/styles.css">
   </head>
   <body class="bg-body-tertiary">
     <a class="visually-hidden-focusable position-absolute top-0 start-0 m-2 btn btn-primary" href="#mainContent">Skip to content</a>
 
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top shadow-sm">
+    <nav class="navbar navbar-expand-lg bg-primary navbar-dark sticky-top shadow-sm">
       <div class="container-fluid">
         <a class="navbar-brand fw-semibold d-flex align-items-center gap-2" href="#">
           <img src="/favicon.svg" alt="ResumeForge anvil icon" width="32" height="32">
@@ -23,8 +23,8 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="mainNavigation">
-          <div class="navbar-nav ms-auto" role="tablist" aria-label="ResumeForge sections">
-            <button class="nav-link active" type="button" data-view="profileView">Profile</button>
+          <div class="navbar-nav ms-auto" aria-label="ResumeForge sections">
+            <button class="nav-link active" type="button" data-view="profileView" aria-current="page">Profile</button>
             <button class="nav-link" type="button" data-view="jobsView">Jobs</button>
             <button class="nav-link" type="button" data-view="skillsView">Skills</button>
             <button class="nav-link" type="button" data-view="certificationsView">Certifications</button>
@@ -41,7 +41,7 @@
         <div class="row g-4">
           <div class="col-12 col-xl-5">
             <div class="card shadow-sm">
-              <div class="card-header bg-white">
+              <div class="card-header">
                 <h1 class="h3 mb-0">Profile</h1>
               </div>
               <div class="card-body">
@@ -84,7 +84,7 @@
               </div>
             </div>
             <div id="profileAiResultCard" class="card shadow-sm mt-3 d-none" aria-live="polite">
-              <div class="card-header bg-white">
+              <div class="card-header">
                 <h2 class="h4 mb-0">AI Revisions</h2>
               </div>
               <div class="card-body">
@@ -94,10 +94,10 @@
           </div>
           <div class="col-12 col-xl-7">
             <div class="card shadow-sm">
-              <div class="card-header bg-white">
+              <div class="card-header">
                 <h2 class="h4 mb-0">Live Preview</h2>
               </div>
-              <div class="card-body bg-body-tertiary">
+              <div class="card-body">
                 <div id="profilePreview" class="resume-paper shadow-sm"></div>
               </div>
             </div>
@@ -109,7 +109,7 @@
         <div class="row g-4">
           <div class="col-12 col-xl-4">
             <div class="card shadow-sm">
-              <div class="card-header bg-white">
+              <div class="card-header">
                 <h1 class="h3 mb-0">Jobs</h1>
               </div>
               <div class="card-body">
@@ -151,7 +151,7 @@
               </div>
             </div>
             <div id="jobsAiResultCard" class="card shadow-sm mt-3 d-none" aria-live="polite">
-              <div class="card-header bg-white">
+              <div class="card-header">
                 <h2 class="h4 mb-0">AI Revisions</h2>
               </div>
               <div class="card-body">
@@ -161,7 +161,7 @@
           </div>
           <div class="col-12 col-xl-8">
             <div class="card shadow-sm">
-              <div class="card-header bg-white">
+              <div class="card-header">
                 <h2 class="h4 mb-0">Saved Jobs</h2>
               </div>
               <div class="card-body">
@@ -176,7 +176,7 @@
         <div class="row g-4">
           <div class="col-12 col-xl-4">
             <div class="card shadow-sm">
-              <div class="card-header bg-white">
+              <div class="card-header">
                 <h1 class="h3 mb-0">Skills</h1>
               </div>
               <div class="card-body">
@@ -205,7 +205,7 @@
               </div>
             </div>
             <div id="skillsAiResultCard" class="card shadow-sm mt-3 d-none" aria-live="polite">
-              <div class="card-header bg-white">
+              <div class="card-header">
                 <h2 class="h4 mb-0">AI Revisions</h2>
               </div>
               <div class="card-body">
@@ -215,7 +215,7 @@
           </div>
           <div class="col-12 col-xl-8">
             <div class="card shadow-sm">
-              <div class="card-header bg-white">
+              <div class="card-header">
                 <h2 class="h4 mb-0">Saved Skills</h2>
               </div>
               <div class="card-body">
@@ -230,7 +230,7 @@
         <div class="row g-4">
           <div class="col-12 col-xl-4">
             <div class="card shadow-sm">
-              <div class="card-header bg-white">
+              <div class="card-header">
                 <h1 class="h3 mb-0">Certifications</h1>
               </div>
               <div class="card-body">
@@ -262,7 +262,7 @@
           </div>
           <div class="col-12 col-xl-8">
             <div class="card shadow-sm">
-              <div class="card-header bg-white">
+              <div class="card-header">
                 <h2 class="h4 mb-0">Saved Certifications</h2>
               </div>
               <div class="card-body">
@@ -277,7 +277,7 @@
         <div class="row g-4">
           <div class="col-12 col-xl-4">
             <div class="card shadow-sm">
-              <div class="card-header bg-white">
+              <div class="card-header">
                 <h1 class="h3 mb-0">Awards</h1>
               </div>
               <div class="card-body">
@@ -309,7 +309,7 @@
           </div>
           <div class="col-12 col-xl-8">
             <div class="card shadow-sm">
-              <div class="card-header bg-white">
+              <div class="card-header">
                 <h2 class="h4 mb-0">Saved Awards</h2>
               </div>
               <div class="card-body">
@@ -324,7 +324,7 @@
         <div class="row g-4">
           <div class="col-12 col-xl-4">
             <div class="card shadow-sm">
-              <div class="card-header bg-white d-flex flex-wrap justify-content-between align-items-center gap-2">
+              <div class="card-header d-flex flex-wrap justify-content-between align-items-center gap-2">
                 <h1 class="h3 mb-0">Resume</h1>
                 <button id="printResumeButton" class="btn btn-success" type="button">Print or Save PDF</button>
               </div>
@@ -350,7 +350,7 @@
               </div>
             </div>
             <div id="resumeAiResultCard" class="card shadow-sm mt-3 d-none" aria-live="polite">
-              <div class="card-header bg-white">
+              <div class="card-header">
                 <h2 class="h4 mb-0">AI Resume Draft</h2>
               </div>
               <div class="card-body">
@@ -358,7 +358,7 @@
               </div>
             </div>
             <div class="card shadow-sm mt-3">
-              <div class="card-header bg-white">
+              <div class="card-header">
                 <h2 class="h4 mb-0">Saved AI Drafts</h2>
               </div>
               <div class="card-body">
@@ -368,10 +368,10 @@
           </div>
           <div class="col-12 col-xl-8">
             <div class="card shadow-sm">
-              <div class="card-header bg-white">
+              <div class="card-header">
                 <h2 class="h4 mb-0">Preview</h2>
               </div>
-              <div class="card-body bg-body-tertiary">
+              <div class="card-body">
                 <div id="resumePreview" class="resume-paper shadow-sm"></div>
               </div>
             </div>
@@ -383,7 +383,7 @@
         <div class="row g-4">
           <div class="col-12 col-lg-6">
             <div class="card shadow-sm">
-              <div class="card-header bg-white">
+              <div class="card-header">
                 <h1 class="h3 mb-0">Settings</h1>
               </div>
               <div class="card-body">
@@ -402,7 +402,7 @@
           </div>
           <div class="col-12 col-lg-6">
             <div class="card shadow-sm">
-              <div class="card-header bg-white">
+              <div class="card-header">
                 <h2 class="h4 mb-0">Libraries</h2>
               </div>
               <div class="card-body">
@@ -419,3 +419,4 @@
     <script src="/js/app.js"></script>
   </body>
 </html>
+

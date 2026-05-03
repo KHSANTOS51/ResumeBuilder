@@ -2,7 +2,24 @@ body {
   min-height: 100vh;
 }
 
+.navbar-dark .navbar-nav .nav-link {
+  color: #ffffff;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link[aria-current="page"] {
+  background-color: #ffffff;
+  color: #1a0933;
+}
+
 .resume-paper {
+  border: 0;
   background: #ffffff;
   color: #1f2937;
   min-height: 11in;
@@ -36,7 +53,7 @@ body {
 }
 
 .resume-style-modern {
-  border-top: 0.18in solid #0d6efd;
+  border-top: 0.18in solid var(--bs-primary);
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -45,8 +62,8 @@ body {
 }
 
 .resume-style-modern .resume-section-title {
-  border-bottom-color: #0d6efd;
-  color: #0d6efd;
+  border-bottom-color: var(--bs-primary);
+  color: var(--bs-primary);
 }
 
 .resume-style-compact {
@@ -81,12 +98,40 @@ body {
 }
 
 @media print {
-  body {
-    background: #ffffff !important;
+  @page {
+    margin: 0.45in;
+    size: letter;
   }
 
-  body * {
-    visibility: hidden;
+  html,
+  body {
+    background: #ffffff !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+  }
+
+  body.printing-resume > :not(main) {
+    display: none !important;
+  }
+
+  body.printing-resume main,
+  body.printing-resume #resumeView,
+  body.printing-resume #resumeView > .row,
+  body.printing-resume #resumeView > .row > .col-12,
+  body.printing-resume #resumeView .card,
+  body.printing-resume #resumeView .card-body {
+    border: 0 !important;
+    box-shadow: none !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  body.printing-resume .app-view:not(#resumeView),
+  body.printing-resume #resumeView > .row > .col-12:first-child,
+  body.printing-resume #resumeView .card-header {
+    display: none !important;
   }
 
   #resumePreview,
@@ -95,14 +140,21 @@ body {
   }
 
   #resumePreview {
+    border: 0 !important;
     box-shadow: none !important;
-    left: 0;
-    margin: 0;
+    color: #000000 !important;
+    left: auto;
+    margin: 0 auto !important;
     max-width: none;
-    min-height: auto;
-    padding: 0.45in;
-    position: absolute;
-    top: 0;
+    min-height: 0 !important;
+    outline: 0 !important;
+    padding: 0 !important;
+    position: static;
+    top: auto;
     width: 100%;
+  }
+
+  #resumePreview header {
+    margin-top: 0 !important;
   }
 }

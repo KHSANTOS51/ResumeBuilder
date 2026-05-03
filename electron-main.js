@@ -1,4 +1,5 @@
-const { app, BrowserWindow, shell } = require('electron');
+const fs = require('fs');
+const { app, BrowserWindow, dialog, ipcMain, shell } = require('electron');
 const path = require('path');
 const { startServer } = require('./server');
 
@@ -22,7 +23,8 @@ const createWindow = async () => {
     icon: path.join(__dirname, 'public', 'favicon.svg'),
     webPreferences: {
       contextIsolation: true,
-      nodeIntegration: false
+      nodeIntegration: false,
+      preload: path.join(__dirname, 'preload.js')
     }
   });
 
@@ -56,4 +58,45 @@ app.on('before-quit', () => {
   if (objServer) {
     objServer.close();
   }
+});
+
+ipcMain.handle('save-resume-pdf', async () => {
+  if (!objMainWindow) {
+    return {
+      canceled: true
+    };
+  }
+
+  const objSaveResult = await dialog.showSaveDialog(objMainWindow, {
+    title: 'Save Resume PDF',
+    defaultPath: 'ResumeForge-Resume.pdf',
+    filters: [
+      {
+        name: 'PDF Documents',
+        extensions: ['pdf']
+      }
+    ]
+  });
+
+  if (objSaveResult.canceled || !objSaveResult.filePath) {
+    return {
+      canceled: true
+    };
+  }
+
+  const objPdfBuffer = await objMainWindow.webContents.printToPDF({
+    displayHeaderFooter: false,
+    pageSize: 'Letter',
+    printBackground: true,
+    margins: {
+      marginType: 'default'
+    }
+  });
+
+  fs.writeFileSync(objSaveResult.filePath, objPdfBuffer);
+
+  return {
+    canceled: false,
+    filePath: objSaveResult.filePath
+  };
 });

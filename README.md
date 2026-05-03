@@ -30,6 +30,8 @@ npm run desktop
 
 The Electron wrapper starts the same Express API locally, opens a desktop window, and closes the local server when the app quits.
 
+In browser mode, `Print or Save PDF` opens the browser print preview. In Electron mode, the same button opens a native save dialog and writes the resume preview directly to a PDF file.
+
 ## Features
 
 - Manage profile, jobs, job responsibilities, skills, certifications, and awards.
@@ -41,7 +43,7 @@ The Electron wrapper starts the same Express API locally, opens a desktop window
 - Request field-level AI suggestions or build a full AI resume draft from selected resume sections.
 - Display AI-built resumes in the same formatted preview as the built-in resume styles.
 - Save and reload AI resume drafts from SQLite.
-- Uses local Bootstrap and SweetAlert2 files; no CDN is required.
+- Uses local Bootstrap, the Bootswatch Vapor theme, and SweetAlert2 files; no CDN is required.
 
 ## Submission Notes
 
