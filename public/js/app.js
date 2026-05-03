@@ -653,7 +653,7 @@ document.addEventListener('click', async (event) => {
     } else if (objTarget.id === 'printResumeButton') {
       await saveOrPrintResume();
     } else if (objTarget.id === 'librariesButton') {
-      Swal.fire('Attributions', 'ResumeForge uses Bootstrap, the Bootswatch Vapor theme, SweetAlert2, Express, dotenv, and the experimental Node SQLite module. All browser libraries are stored locally in this project.', 'info');
+      Swal.fire('Attributions', 'Republic Resumes uses Bootstrap, the Bootswatch Vapor theme, SweetAlert2, Express, dotenv, and the experimental Node SQLite module. All browser libraries are stored locally in this project.', 'info');
     }
   } catch (error) {
     showError(error.message);

@@ -19,7 +19,7 @@ const createWindow = async () => {
     height: 900,
     minWidth: 960,
     minHeight: 700,
-    title: 'ResumeForge',
+    title: 'Republic Resumes',
     icon: path.join(__dirname, 'public', 'favicon.svg'),
     webPreferences: {
       contextIsolation: true,
@@ -69,7 +69,7 @@ ipcMain.handle('save-resume-pdf', async () => {
 
   const objSaveResult = await dialog.showSaveDialog(objMainWindow, {
     title: 'Save Resume PDF',
-    defaultPath: 'ResumeForge-Resume.pdf',
+    defaultPath: 'Republic-Resume.pdf',
     filters: [
       {
         name: 'PDF Documents',

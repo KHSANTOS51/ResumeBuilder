@@ -1,7 +1,7 @@
 {
   "name": "resumebuilder",
   "version": "1.0.0",
-  "description": "ResumeForge local resume builder for CSC3100.",
+  "description": "Republic Resumes local resume builder for CSC3100.",
   "main": "electron-main.js",
   "scripts": {
     "start": "node server.js",

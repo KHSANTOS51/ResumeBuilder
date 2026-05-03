@@ -45,7 +45,7 @@ app.use((req, res) => {
 const startServer = (intRequestedPort = intPort) => new Promise((resolve) => {
   const objServer = app.listen(intRequestedPort, () => {
     const intActivePort = objServer.address().port;
-    console.log(`ResumeForge is running at http://localhost:${intActivePort}`);
+    console.log(`Republic Resumes is running at http://localhost:${intActivePort}`);
     resolve({
       app,
       server: objServer,

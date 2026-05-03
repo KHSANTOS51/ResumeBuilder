@@ -1,6 +1,6 @@
-# ResumeForge
+# Republic Resumes
 
-ResumeForge is a local single-page resume builder for CSC3100. It uses a plain HTML/CSS/JavaScript frontend, an Express REST API, and SQLite storage through Node's built-in SQLite module.
+Republic Resumes is a local single-page resume builder for CSC3100. It uses a plain HTML/CSS/JavaScript frontend, an Express REST API, and SQLite storage through Node's built-in SQLite module.
 
 ## Run
 
@@ -22,7 +22,7 @@ ResumeForge is a local single-page resume builder for CSC3100. It uses a plain H
 
 ## Desktop App
 
-ResumeForge can also run inside Electron:
+Republic Resumes can also run inside Electron:
 
 ```bash
 npm run desktop
