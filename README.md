@@ -1,6 +1,6 @@
 # ResumeForge
 
-ResumeForge is a local single-page resume builder for CSC3100. It uses a plain HTML/CSS/JavaScript frontend, an Express REST API, and SQLite storage through Node's built-in SQLite module.
+ResumeForge is a local single-page resume builder. It uses a plain HTML/CSS/JavaScript frontend, an Express REST API, and SQLite storage through Node's built-in SQLite module.
 
 ## Run
 
@@ -43,9 +43,8 @@ The Electron wrapper starts the same Express API locally, opens a desktop window
 - Save and reload AI resume drafts from SQLite.
 - Uses local Bootstrap and SweetAlert2 files; no CDN is required.
 
-## Submission Notes
+## Known Issues
 
-- GitHub repository link: add your public repository URL here before submission.
-- Lighthouse accessibility score: run Lighthouse and document the score here before submission.
-- Sharing permission statement: add whether the instructor may share this project with other students.
-- Example resume PDF: generate one from the Resume screen with the browser print dialog.
+- The web browser application saves the resume as print screen, and so results in a timestamp and web naming as a header at the top of the page.
+- The Ai draft feature does not do a full return do to the token limit of gemini's free api cap.
+  
